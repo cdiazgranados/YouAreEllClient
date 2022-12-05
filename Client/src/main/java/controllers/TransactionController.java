@@ -2,6 +2,7 @@ package controllers;
 
 import models.Id;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,10 +11,13 @@ public class TransactionController {
     private MessageController msgCtrl;
     private IdController idCtrl;
 
-    public TransactionController(MessageController m, IdController j) {}
+    public TransactionController(MessageController m, IdController j) {
+        this.msgCtrl = m;
+        this.idCtrl = j;
+    }
 
     public List<Id> getIds() {
-        return new ArrayList<Id>(); //change this
+        return idCtrl.getIds(); //change this
     }
     public String postId(String idtoRegister, String githubName) {
         Id tid = new Id(idtoRegister, githubName);
@@ -21,10 +25,20 @@ public class TransactionController {
         return ("Id registered.");
     }
 
-    public String makecall(String s, String get, String s1) {
-//        if (s.equalsIgnoreCase("Ids") && get.equalsIgnoreCase("GET"))
+    public String makecall(String s, String get, String s1)  {
+        StringBuilder sb = new StringBuilder();
+        if (s.equalsIgnoreCase("Ids") && get.equalsIgnoreCase("GET")) {
+            for (Id j: getIds()) {
+                sb.append(j + "\n");
+            }
+            return sb.toString();
+        }
+        else if (s.equalsIgnoreCase("Ids")) {
 
-        return ""; //todo: fill this in
+            return postId(get, s1);  //fix this
+        }
+
+        return "Not working here"; //todo: fill this in
     }
 
 }

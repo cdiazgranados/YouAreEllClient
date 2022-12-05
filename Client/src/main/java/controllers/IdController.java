@@ -23,21 +23,28 @@ public class IdController {
     public IdController() {
     }
 
-    public ArrayList<Id> getIds() throws IOException, InterruptedException {
+    public ArrayList<Id> getIds() {
+        try {
         Gson gson = new Gson();
 
-        ArrayList<Id> allServerIds = new ArrayList<>();
+        ArrayList<Id> allServerIds;
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(serverIdsUrl))
                 .build();
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
         Type serverIdsListType = new TypeToken<ArrayList<Id>>(){}.getType();
         allServerIds = gson.fromJson(response.body(), serverIdsListType);
+
         return allServerIds;
+        }catch (Exception e) {
+            System.out.println(e);
+            return null;
+        }
     }
 
-    public static void main(String[] args) throws IOException, InterruptedException {
+    public static void main(String[] args) {
         IdController idc = new IdController();
         System.out.println(idc.getIds());
     }

@@ -29,7 +29,7 @@ public class SimpleShell {
                 (new InputStreamReader(System.in));
 
         ProcessBuilder pb = new ProcessBuilder();
-        List<String> history = new ArrayList<String>();
+        List<String> history = new ArrayList<>();
         int index = 0;
         //we break out with <ctrl c>
         while (true) {
@@ -51,7 +51,7 @@ public class SimpleShell {
 
             //loop through to see if parsing worked
             for (int i = 0; i < commands.length; i++) {
-                //System.out.println(commands[i]); //***check to see if parsing/split worked***
+                System.out.println(commands[i]); //***check to see if parsing/split worked***
                 list.add(commands[i]);
 
             }
@@ -95,19 +95,19 @@ public class SimpleShell {
                     pb.command(list);
                 }
 
-                // // wait, wait, what curiousness is this?
-                // Process process = pb.start();
+                 // wait, wait, what curiousness is this?
+                 Process process = pb.start();
 
-                // //obtain the input stream
-                // InputStream is = process.getInputStream();
-                // InputStreamReader isr = new InputStreamReader(is);
-                // BufferedReader br = new BufferedReader(isr);
+                 //obtain the input stream
+                 InputStream is = process.getInputStream();
+                 InputStreamReader isr = new InputStreamReader(is);
+                 BufferedReader br = new BufferedReader(isr);
 
-                // //read output of the process
-                // String line;
-                // while ((line = br.readLine()) != null)
-                //     System.out.println(line);
-                // br.close();
+                 //read output of the process
+                 String line;
+                 while ((line = br.readLine()) != null)
+                     System.out.println(line);
+                 br.close();
 
 
             }
