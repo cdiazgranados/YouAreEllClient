@@ -22,6 +22,9 @@ public class TransactionController {
     }
 
     public String makecall(String s, String get, String s1) {
+//        if (s.equalsIgnoreCase("Ids") && get.equalsIgnoreCase("GET"))
+
         return ""; //todo: fill this in
     }
+
 }
