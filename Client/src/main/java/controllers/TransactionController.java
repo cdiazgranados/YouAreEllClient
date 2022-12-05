@@ -2,6 +2,7 @@ package controllers;
 
 import models.Id;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TransactionController {
@@ -12,11 +13,15 @@ public class TransactionController {
     public TransactionController(MessageController m, IdController j) {}
 
     public List<Id> getIds() {
-
+        return new ArrayList<Id>(); //change this
     }
     public String postId(String idtoRegister, String githubName) {
         Id tid = new Id(idtoRegister, githubName);
         tid = idCtrl.postId(tid);
         return ("Id registered.");
+    }
+
+    public String makecall(String s, String get, String s1) {
+        return ""; //todo: fill this in
     }
 }
